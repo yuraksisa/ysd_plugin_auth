@@ -1,3 +1,16 @@
-forum_admin_menu:
-  forum_menu: Foros
-  forum_management: Foro
+auth_messages:
+  message_success_login: Identificació correcta
+  message_error_login: L\'usuari o la clau no són valids
+  message_logout_user: Desconexió del sistema
+login_form:
+  title: Login
+  already_account_message: Iniciar nova sessió
+  username: Usuari
+  password: Contrasenya
+  not_account_message: ¿És la primera vegada que utilitzes social?
+  login: Accedir
+  create_account: Nou compte
+  can_access_your_account: ¿No pots accedir a la teva compte 
+login_model:
+  user_name_required: Si us plau, introdueixi el codi d\'usuari
+  password_required: Si us plau, introdueixi la contrasenya 

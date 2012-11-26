@@ -7,8 +7,13 @@ Gem::Specification.new do |s|
   s.files   = Dir['lib/**/*.rb','views/**/*.erb','i18n/**/*.yml','static/**/*.*'] 
   s.description = "Auth integration"
   s.summary = "Auth integration"
+
+  s.add_runtime_dependency "warden"                # Authorization
+  s.add_runtime_dependency "rack-flash","~>0.1.2"  # Flash messages
   
-  s.add_runtime_dependency "ysd_core_plugins"
-  s.add_runtime_dependency "ysd_mw_auth"
+  s.add_runtime_dependency "ysd_plugin_cms"        # Page serving
+  s.add_runtime_dependency "ysd_plugin_profile"    # Signup and password forgetten links (in views)
+  s.add_runtime_dependency "ysd_core_themes"       # Serving static content
+  s.add_runtime_dependency "ysd_core_plugins"      # Plugins 
   
 end

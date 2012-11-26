@@ -1,3 +1,16 @@
-forum_admin_menu:
-  forum_menu: Foros
-  forum_management: Foro
+auth_messages:
+  message_success_login: You have logged in successfully
+  message_error_login: Could not log you in. User name or password are not valid
+  message_logout_user: You have logged out
+login_form:
+  title: Login
+  already_account_message: Start a new session
+  username: User name
+  password: Password
+  not_account_message: Is it the first time are you using Social? 
+  login: Access
+  create_account: Sign up
+  can_access_your_account: Can't you access your account?
+login_model:
+  user_name_required: Please, you must input your user name
+  password_required: Please, input your password
