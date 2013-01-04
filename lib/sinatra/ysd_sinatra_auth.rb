@@ -1,3 +1,4 @@
+require 'sinatra/flash'
 module Sinatra
   module YSD
     #
@@ -42,7 +43,8 @@ module Sinatra
       def self.registered(app)
                 
         app.helpers Sinatra::Auth
-                  
+        app.register Sinatra::Flash
+
         # Specific application settings
         app.set :success_path, "/"
         app.set :failure_path, "/login"

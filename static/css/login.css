@@ -1,0 +1,63 @@
+#login_container {
+
+  margin:0 auto; // Center alignment
+  padding: 10px;
+  width: 30em;
+  
+  padding-top: 5em;
+  padding-bottom: 10em;  	
+}
+
+#form_login {
+  
+  margin: 10px;
+  width: 25em;
+
+  border: 1px solid gray;
+  background-color: #EEEEEE;
+  
+  padding: 10px;
+    
+  -webkit-border-radius: 3px 3px; /* Safari  */ 
+  -moz-border-radius: 3px 3px; /* Firefox */
+  border-radius: 3px 3px; /* iExplorer 9 */		
+}
+
+#form_login h2 {
+  padding-left: 6px;
+  font-size: large;	
+}
+
+#form_login .fieldtitle {
+  width  : 6em;	
+  padding: 6px;
+  float: left;
+  clear: none;
+}
+
+#form_login label.error {
+  width: 18.5em;	
+  padding-top:5px;
+  font-size: 14px;
+}
+
+#form_login .fieldcontrol {
+  width  : 15em;	
+  padding: 5px;
+  margin-right: 10px;
+  -webkit-border-radius: 3px 3px; /* Safari  */ 
+  -moz-border-radius: 3px 3px; /* Firefox */
+  border-radius: 3px 3px; /* iExplorer 9 */	
+  float: right;
+  clear: none;	
+}
+
+#signup {
+  background-color: red;
+  color: white;		
+}
+
+.signup-button {
+  background-color: red;
+  color: white;	
+}

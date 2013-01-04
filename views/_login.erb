@@ -1,0 +1,67 @@
+    <form id="form_login" name="form_login" action="/login" method="post">
+      <div class="formrow">
+        <h2><%= t.login_form.already_account_message %></h2>
+      </div>
+      <div class="formrow">
+        <label for="username" class="fieldtitle"><%= t.login_form.username %></label>
+        <input type="text" id="username" name="username" maxlength="20" class="fieldcontrol"/>
+      </div>
+      <div class="formrow">
+        <label for="password" class="fieldtitle"><%= t.login_form.password %></label>
+        <input type="password" id="password" name="password" maxlength="20" class="fieldcontrol"/>
+      </div>
+      <div class="formrow formrow-botonera">
+        <input type="submit" id="login" name="login" value="<%= t.login_form.login %>"/>
+        <% if show_create_account %>
+          <input type="button" id="signup" name="signup" value="<%= t.login_form.create_account%>" class="signup-button"/>
+        <% end %>      
+      </div>
+      <% if show_password_forgotten %>
+        <div>
+          <span><a href="/profile/password-forgotten"><%= t.login_form.can_access_your_account %></a></span>
+        </div>
+      <% end %>
+    </form>
+   
+<script type="text/javascript">
+  
+  require(['jquery','jquery.validate'], function($) {
+    loginView = {
+      init : function() {
+
+             	  $("#form_login").validate(
+                  {
+                  	
+                    debug: true,
+  	       
+  	                submitHandler: function(form) 
+  	                {
+  	       
+  	                  form.submit();
+  	       	
+  	                },
+                  	
+                 	         
+                    rules: {
+                       'username': "required",
+                       'password': "required"  	
+                    },
+         
+                    messages: {
+                       'username': "<%= t.login_model.user_name_required %>",
+                       'password': "<%= t.login_model.password_required %>"	
+                    }   	
+                  }
+                  );
+        
+        $('form[name=form_login]').bind('focus', 
+          function() {
+            $('input[name=username]').focus();	
+          });
+
+        //$('#signup').bind('click', function(event) { window.location.href = '/profile/signup'  });
+      }	
+    }
+    loginView.init();
+  });
+</script>

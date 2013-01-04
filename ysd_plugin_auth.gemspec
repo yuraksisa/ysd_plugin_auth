@@ -1,6 +1,6 @@
 Gem::Specification.new do |s|
   s.name    = "ysd_plugin_auth"
-  s.version = "0.1"
+  s.version = "0.1.6"
   s.authors = ["Yurak Sisa Dream"]
   s.date    = "2012-06-08"
   s.email   = ["yurak.sisa.dream@gmail.com"]
@@ -9,7 +9,8 @@ Gem::Specification.new do |s|
   s.summary = "Auth integration"
 
   s.add_runtime_dependency "warden"                # Authorization
-  s.add_runtime_dependency "rack-flash","~>0.1.2"  # Flash messages
+  s.add_runtime_dependency "sinatra-flash"
+  #s.add_runtime_dependency "rack-flash","~>0.1.2"  # Flash messages
   
   s.add_runtime_dependency "ysd_plugin_cms"        # Page serving
   s.add_runtime_dependency "ysd_plugin_profile"    # Signup and password forgetten links (in views)
