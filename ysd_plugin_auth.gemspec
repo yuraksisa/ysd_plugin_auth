@@ -10,7 +10,6 @@ Gem::Specification.new do |s|
 
   s.add_runtime_dependency "warden"                # Authorization
   s.add_runtime_dependency "sinatra-flash"
-  #s.add_runtime_dependency "rack-flash","~>0.1.2"  # Flash messages
   
   s.add_runtime_dependency "ysd_plugin_cms"        # Page serving
   s.add_runtime_dependency "ysd_plugin_profile"    # Signup and password forgetten links (in views)
