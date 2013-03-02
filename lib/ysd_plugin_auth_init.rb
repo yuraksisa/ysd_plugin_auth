@@ -9,6 +9,7 @@ Plugins::SinatraAppPlugin.register :auth do
    version=     '0.1'
    sinatra_helper    Sinatra::Auth
    sinatra_extension Sinatra::YSD::AuthenticationAuthorization
+   sinatra_extension Sinatra::YSD::ConnectedUser
    hooker            Huasi::AuthExtension
   
 end

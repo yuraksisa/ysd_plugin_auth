@@ -1,4 +1,6 @@
 require 'sinatra/flash'
+require 'ysd-plugins' if not defined?Plugins
+
 module Sinatra
   module YSD
     #
@@ -62,10 +64,9 @@ module Sinatra
           locals = {}
           locals.store(:show_create_account, SystemConfiguration::Variable.get_value('auth.create_account','false').to_bool)
           locals.store(:show_password_forgotten, SystemConfiguration::Variable.get_value('auth.show_password_forgotten','false').to_bool)
-          
-          puts "locals : #{locals}"
-          
-          load_page('login', :locals => locals) #options.login_page, :locals => locals )
+          locals.store(:login_strategies, Plugins::Plugin.plugin_invoke_all('login_strategy', {:app => self}).join(" ") || '')
+
+          load_page('login', :locals => locals) 
         end
     
         # Post login
@@ -75,23 +76,23 @@ module Sinatra
             logout
           end
           authenticate
-          redirect(session[:return_path] ? session[:return_to] : options.success_path)
+          redirect(session[:return_path] ? session[:return_to] : settings.success_path)
         end
   
         # logout
         #
         app.get '/logout/?' do
-          authorized!(options.failure_path)
+          authorized!(settings.failure_path)
           logout
-          redirect(options.logout_path)
+          redirect(settings.logout_path)
         end
   
         # Unauthenticated request
         # 
         app.post '/unauthenticated/?' do
           status 401
-          flash[:error]= t.auth_messages.message_error_login if defined?(Rack::Flash) 
-          redirect options.failure_path
+          flash[:error]= t.auth_messages.message_error_login 
+          redirect settings.failure_path
         end
     
         #
