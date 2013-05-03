@@ -3,17 +3,15 @@
         <h2><%= t.login_form.already_account_message %></h2>
       </div>
       <div class="formrow">
-        <label for="username" class="fieldtitle"><%= t.login_form.username %></label>
-        <input type="text" id="username" name="username" maxlength="20" class="fieldcontrol"/>
+        <input type="text" id="username" name="username" maxlength="20" class="fieldcontrol" placeholder="<%= t.login_form.username %>"/>
       </div>
       <div class="formrow">
-        <label for="password" class="fieldtitle"><%= t.login_form.password %></label>
-        <input type="password" id="password" name="password" maxlength="20" class="fieldcontrol"/>
+        <input type="password" id="password" name="password" maxlength="20" class="fieldcontrol" placeholder="<%= t.login_form.password %>"/>
       </div>
       <div class="formrow formrow-botonera">
-        <input type="submit" id="login" name="login" value="<%= t.login_form.login %>"/>
+        <input type="submit" id="login" name="login" class="form-button" value="<%= t.login_form.login %>"/>
         <% if show_create_account %>
-          <input type="button" id="signup" name="signup" value="<%= t.login_form.create_account%>" class="signup-button"/>
+          <input type="button" id="signup" name="signup" class="form-button" value="<%= t.login_form.create_account%>" class="signup-button"/>
         <% end %>      
       </div>
       <% if show_password_forgotten %>
@@ -65,5 +63,6 @@
       }	
     }
     loginView.init();
+    $('input[name=username]').focus();
   });
 </script>

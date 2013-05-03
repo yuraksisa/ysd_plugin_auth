@@ -4,7 +4,7 @@ auth_messages:
   message_logout_user: Desconexión del sistema
 login_form:
   title: Login
-  already_account_message: Iniciar nueva sesión
+  already_account_message: Iniciar sesión
   username: Usuario
   password: Contraseña
   not_account_message: ¿Es la primera vez que estás usando social?

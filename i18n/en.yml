@@ -4,7 +4,7 @@ auth_messages:
   message_logout_user: You have logged out
 login_form:
   title: Login
-  already_account_message: Start a new session
+  already_account_message: Login
   username: User name
   password: Password
   not_account_message: Is it the first time are you using Social? 
