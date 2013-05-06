@@ -48,10 +48,10 @@ module Sinatra
         app.register Sinatra::Flash
 
         # Specific application settings
-        app.set :success_path, "/"
-        app.set :failure_path, "/login"
-        app.set :logout_path, "/"
-        app.set :login_page, :login
+        app.set :success_path, "/" unless app.settings.success_path
+        app.set :failure_path, "/login" unless app.settings.failure_path
+        app.set :logout_path, "/" unless app.settings.logout_path
+        app.set :login_page, :login unless app.settings.login_page
 
         # Add the local folders to the views and translations     
         app.settings.views = Array(app.settings.views).push(File.expand_path(File.join(File.dirname(__FILE__), '..', '..', 'views')))
