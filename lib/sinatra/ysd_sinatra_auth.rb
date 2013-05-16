@@ -52,6 +52,66 @@ module Sinatra
         app.set :failure_path, "/login" unless app.settings.failure_path
         app.set :logout_path, "/" unless app.settings.logout_path
         app.set :login_page, :login unless app.settings.login_page
+        
+        #
+        # A condition to check if the user belongs to one or more usergroups
+        #
+        app.set(:allowed_usergroups) do |*usergroups|
+          condition do
+            authorized!('/login') if (not authenticated?) or user.belongs_to?('anonymous')
+            if not user.belongs_to?(usergroups)
+              session[:return_to] = request.path 
+              redirect '/login'               
+            end
+          end
+        end
+        
+        #
+        # A condition to check if the HTTP Origin header matches
+        # 
+        app.set(:allowed_origin) do |origin|
+          condition do
+            if origin.is_a?Proc
+              if reg_exp = origin.call
+                Regexp.new(reg_exp) =~ request.env['HTTP_ORIGIN']
+              else
+                logger.error("origin not defined in regular expression")
+                false
+              end
+            else
+              Regexp.new(origin) =~ request.env['HTTP_ORIGIN']
+            end
+          end
+        end 
+        
+        #
+        # A condition to check if the HTTP REMOTE ADDRESS or PROXYs matches
+        #
+        app.set(:allowed_remote) do |r_address|
+          condition do
+            c_r_a = if r_address.is_a?Proc
+                      if reg_exp = r_address.call
+                        Regexp.new(reg_exp)
+                      end
+                    else
+                      Regexp.new(r_address)
+                    end
+            
+            if c_r_a.nil?
+              logger.error("r_address not defined in regular expression")
+              false
+            else
+              request_remote_address = []
+              request_remote_address << request.env['HTTP_X_FORWARDED_FOR'] if request.env.has_key?('HTTP_X_FORWARDED_FOR')
+              request_remote_address << request.env['REMOTE_ADDRESS'] if request.env.has_key?('REMOTE_ADDR')
+              unless request_remote_address.empty? 
+                request_remote_address.any?{|ra| c_r_a =~ ra} 
+              end
+            end
+
+          end
+
+        end
 
         # Add the local folders to the views and translations     
         app.settings.views = Array(app.settings.views).push(File.expand_path(File.join(File.dirname(__FILE__), '..', '..', 'views')))
@@ -72,11 +132,12 @@ module Sinatra
         # Post login
         #
         app.post '/login/?' do
+          return_to = session[:return_to]
           if authenticated?
             logout
           end
           authenticate
-          redirect(session[:return_path] ? session[:return_to] : settings.success_path)
+          redirect(return_to || settings.success_path)
         end
   
         # logout
@@ -85,6 +146,14 @@ module Sinatra
           authorized!(settings.failure_path)
           logout
           redirect(settings.logout_path)
+        end
+
+        # Unauthenticated request
+        # 
+        app.get '/unauthenticated/?' do
+          status 401
+          flash[:error]= t.auth_messages.message_error_login 
+          redirect settings.failure_path
         end
   
         # Unauthenticated request
