@@ -48,7 +48,7 @@ module Sinatra
         app.register Sinatra::Flash
 
         # Specific application settings
-        app.set :success_path, "/" unless app.settings.success_path
+        app.set :success_path, "/dashboard" unless app.settings.success_path
         app.set :failure_path, "/login" unless app.settings.failure_path
         app.set :logout_path, "/" unless app.settings.logout_path
         app.set :login_page, :login unless app.settings.login_page
