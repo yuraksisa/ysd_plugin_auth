@@ -137,7 +137,7 @@ module Sinatra
             logout
           end
           authenticate
-          redirect(return_to || settings.success_path)
+          redirect(return_to || '/dashboard')
         end
   
         # logout
