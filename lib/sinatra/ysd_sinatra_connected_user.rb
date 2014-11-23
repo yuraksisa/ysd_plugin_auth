@@ -14,7 +14,7 @@ module Sinatra
         app.before /^[^.]*$/ do
           
           if user
-          	if Thread.current[:connected_user] != user
+           	if Thread.current[:connected_user] != user
           	  Thread.current[:connected_user] = user
               Users::ResourceAccessControl.updated_connected_user
             end

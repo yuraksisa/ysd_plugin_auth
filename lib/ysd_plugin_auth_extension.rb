@@ -76,20 +76,23 @@ module Huasi
       
     end
 
-    # ========= Page Building ============
-    
     #
-    # It gets the style sheets defined in the module
+    # ---------- Path prefixes to be ignored ----------
     #
-    # @param [Context]
-    #
-    # @return [Array]
-    #   An array which contains the css resources used by the module
-    #
-    #def page_style(context={})
-    #  ['/auth/css/login.css']     
-    #end
 
+    #
+    # Ignore the following path prefixes in language processor
+    #
+    def ignore_path_prefix_language(context={})
+      %w(/login /logout /unauthenticated)
+    end
+
+    #
+    # Ignore the following path prefix in cms
+    #
+    def ignore_path_prefix_cms(context={})
+      %w(/login /logout /unauthenticated)
+    end
       
   end #AuthExtension
 end #Huasi
