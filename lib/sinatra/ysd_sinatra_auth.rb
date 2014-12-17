@@ -60,8 +60,13 @@ module Sinatra
           condition do
             authorized!('/login') if (not authenticated?) or user.belongs_to?('anonymous')
             if not user.belongs_to?(usergroups)
-              session[:return_to] = request.path 
-              redirect '/login'               
+              if request.path_info =~ /^\/api/
+                status 403
+                halt
+              else
+                session[:return_to] = request.path 
+                redirect '/login'
+              end               
             end
           end
         end
