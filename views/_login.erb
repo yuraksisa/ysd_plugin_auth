@@ -8,10 +8,10 @@
       <div class="formrow">
         <input type="password" id="password" name="password" maxlength="20" class="fieldcontrol" placeholder="<%= t.login_form.password %>"/>
       </div>
-      <div class="formrow formrow-botonera">
-        <input type="submit" id="login" name="login" class="form-button" value="<%= t.login_form.login %>"/>
+      <div class="formrow formrow-botonera top-space">
+        <input type="submit" id="login" name="login" class="form-button" value="<%= t.login_form.login %>" style="width:100%"/>
         <% if show_create_account %>
-          <input type="button" id="signup" name="signup" class="form-button" value="<%= t.login_form.create_account%>" class="signup-button"/>
+          <input type="button" id="signup" name="signup" class="form-button signup-button" value="<%= t.login_form.create_account%>" style="width:100%"/>
         <% end %>      
       </div>
       <% if show_password_forgotten %>
