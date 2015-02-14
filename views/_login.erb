@@ -1,6 +1,6 @@
     <form id="form_login" name="form_login" action="/login" method="post">
       <div class="formrow">
-        <h2><%= t.login_form.already_account_message %></h2>
+        <h2 class="centered_text"><%= t.login_form.already_account_message %></h2>
       </div>
       <div class="formrow">
         <input type="text" id="username" name="username" maxlength="20" class="fieldcontrol" placeholder="<%= t.login_form.username %>"/>
@@ -11,7 +11,10 @@
       <div class="formrow formrow-botonera top-space">
         <input type="submit" id="login" name="login" class="form-button" value="<%= t.login_form.login %>" style="width:100%"/>
         <% if show_create_account %>
-          <input type="button" id="signup" name="signup" class="form-button signup-button" value="<%= t.login_form.create_account%>" style="width:100%"/>
+        <div>
+          <span><a id="create_account" href="/profile/register"><%= t.login_form.create_account %></a></span>
+        </div>        
+          <!--input type="button" id="signup" name="signup" class="form-button signup-button" value="<%= t.login_form.create_account%>" style="width:100%"/-->
         <% end %>      
       </div>
       <% if show_password_forgotten %>
