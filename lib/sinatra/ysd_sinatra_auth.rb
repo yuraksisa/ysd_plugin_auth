@@ -1,4 +1,6 @@
-require 'sinatra/flash'
+#require 'sinatra/flash'
+require 'rack-flash'
+require 'sinatra/redirect_with_flash'
 require 'ysd-plugins' if not defined?Plugins
 
 module Sinatra
@@ -45,7 +47,8 @@ module Sinatra
       def self.registered(app)
                 
         app.helpers Sinatra::Auth
-        app.register Sinatra::Flash
+#        app.register Sinatra::Flash
+        app.helpers Sinatra::RedirectWithFlash        
 
         # Specific application settings
         app.set :success_path, "/dashboard" unless app.settings.success_path
