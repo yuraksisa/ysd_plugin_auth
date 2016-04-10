@@ -93,6 +93,14 @@ module Huasi
     def ignore_path_prefix_cms(context={})
       %w(/login /logout /unauthenticated)
     end
+
+    #
+    # Ignore the following path prefix in breadcrumb
+    #
+    def inore_path_prefix_breadcrumb(context={})
+      %w(/login /logout /unauthenticated)
+    end  
+    
       
   end #AuthExtension
 end #Huasi
