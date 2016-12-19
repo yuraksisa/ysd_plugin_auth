@@ -41,7 +41,7 @@ module Sinatra
       #
       def authorized! (failure_path)
     
-        unless authenticated? or user.belongs_to?('anonymous')
+        unless authenticated? or (user and user.belongs_to?('anonymous'))
           session[:return_to] = request.path 
           redirect failure_path
         end
