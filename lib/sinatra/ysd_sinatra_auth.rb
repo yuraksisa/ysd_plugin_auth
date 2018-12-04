@@ -134,7 +134,7 @@ module Sinatra
           locals.store(:show_password_forgotten, SystemConfiguration::Variable.get_value('auth.show_password_forgotten','false').to_bool)
           locals.store(:login_strategies, Plugins::Plugin.plugin_invoke_all('login_strategy', {:app => self}).join(" ") || '')
 
-          load_page('login', :locals => locals) 
+          load_page('login', :locals => locals, layout: :page_render_login) 
         end
     
         # Post login

@@ -24,7 +24,9 @@ module Sinatra
       #
       # @param [Symbol] The scope 
       def authenticated?(scope=nil)
-       
+
+        p "checking authenticated? #{user(scope) ? user(scope).username : 'no user'}"
+
         scope ? warden.authenticated?(scope) : warden.authenticated?
       
       end
@@ -52,7 +54,8 @@ module Sinatra
       #
       # @param [Symbol] The session scope to terminate
       def logout(scope = nil)
-    
+
+        p "Logout"
         scope ? warden.logout(scope) : warden.logout
     
       end
